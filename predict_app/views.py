@@ -8,11 +8,7 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import io, base64
-from mpl_toolkits.mplot3d import Axes3D
 
 model = None
 feature_cols = []
@@ -131,6 +127,10 @@ def upload_file(request):
 
 
 def results_view(request):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
     global df_cache, model, feature_cols
 
     if df_cache is None:
